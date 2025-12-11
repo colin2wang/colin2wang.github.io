@@ -1,535 +1,781 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wang Bing - Resume</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: rgb(32, 91, 173);
-            --light-blue: rgb(178, 203, 235);
-            --accent-pink: rgb(222, 40, 112);
-            --text-dark: #333;
-            --text-light: white;
-            --bg-light: #f8f9fa;
+            --bg-color: #ffffff;
+            --surface-color: #f8f8f8;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --border-color: #e0e0e0;
+            --accent-black: #000000;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        
+
         * {
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
             overflow-x: hidden;
         }
-        
-        .page-header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
-            color: var(--text-light);
-            padding: 4rem 2rem;
-            text-align: center;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero {
+            background-color: var(--accent-black);
+            color: white;
+            padding: 6rem 2rem;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40vh;
         }
-        
-        .page-header::before {
+
+        /* Abstract Background Pattern */
+        .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
-            animation: float 20s infinite linear;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .header-content h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin: 0 0 1rem;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .header-content .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-        
-        .contact-info {
-            margin-top: 2rem;
-            font-size: 1rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .section {
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .section:nth-child(1) { animation-delay: 0.1s; }
-        .section:nth-child(2) { animation-delay: 0.2s; }
-        .section:nth-child(3) { animation-delay: 0.3s; }
-        .section:nth-child(4) { animation-delay: 0.4s; }
-        .section:nth-child(5) { animation-delay: 0.5s; }
-        
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--primary-blue);
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--accent-pink);
-            border-radius: 2px;
-        }
-        
-        .profile-summary {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-left: 5px solid var(--primary-blue);
-        }
-        
-        .profile-summary p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-        
-        .certificates {
-            background: var(--light-blue);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-        }
-        
-        .certificates h4 {
-            color: var(--primary-blue);
-            margin-top: 0;
-        }
-        
-        .education-item, .experience-item {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-left: 4px solid var(--accent-pink);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .education-item:hover, .experience-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .education-item h3, .experience-item h3 {
-            color: var(--primary-blue);
-            margin-top: 0;
-            font-size: 1.3rem;
-        }
-        
-        .date {
-            color: var(--accent-pink);
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .skill-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-top: 4px solid var(--primary-blue);
-        }
-        
-        .skill-category h3 {
-            color: var(--primary-blue);
-            margin-top: 0;
-            font-size: 1.2rem;
-        }
-        
-        .skill-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .skill-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .skill-list li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent-pink);
-            font-weight: bold;
-        }
-        
-        .project-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .project-item {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-            border-left: 3px solid var(--primary-blue);
-        }
-        
-        .project-item strong {
-            color: var(--primary-blue);
-        }
-        
-        .btn {
-            background-color: var(--primary-blue);
-            border-radius: 99px;
-            color: white;
-            display: inline-block;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            line-height: 42px;
-            height: 42px;
-            padding: 0 40px;
-            text-decoration: none;
-            transition: background-color 0.4s ease-out;
-            margin-top: 1rem;
-        }
-        
-        .btn:hover {
-            background-color: var(--accent-pink);
-        }
-        
-        .line-svg {
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
             pointer-events: none;
-            z-index: 0;
-            opacity: 0.1;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 3rem;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .profile-img-wrapper {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.2);
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .profile-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%); /* Keeps photo black and white */
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .profile-img-wrapper:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%); /* Color on hover */
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text .subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            border-right: 2px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            width: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .hero-contact {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.95rem;
+            color: #999;
+        }
+
+        .hero-contact div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* --- Main Layout --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-black);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            padding-right: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background-color: rgba(0,0,0,0.05);
+            z-index: -1;
+        }
+
+        /* --- Profile Summary --- */
+        .summary-box {
+            background-color: var(--surface-color);
+            padding: 2.5rem;
+            border-left: 4px solid var(--accent-black);
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+
+        .summary-box p {
+            margin-bottom: 1.2rem;
+        }
+
+        .summary-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .certificates-tag {
+            display: inline-block;
+            margin-top: 1.5rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 4px;
         }
         
-        .anim-overview-stroke {
-            stroke-dasharray: 5414.29;
-            stroke-dashoffset: 5414.29;
-            animation: stroke linear forwards;
-            animation-timeline: scroll();
-            animation-range: -10% 85%;
+        .certificates-tag h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--accent-black);
         }
-        
-        @keyframes stroke {
-            from {
-                stroke-dashoffset: 5414.29;
-            }
-            to {
-                stroke-dashoffset: 0;
-            }
+
+        .certificates-tag ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-        
+
+        .certificates-tag li {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            background: #f0f0f0;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        /* --- Timeline (Experience & Education) --- */
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 3rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg-color);
+            border: 3px solid var(--accent-black);
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .timeline-item:hover::before {
+            background: var(--accent-black);
+        }
+
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .role-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .role-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #777;
+            background: #f0f0f0;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .company-desc {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- Project Cards (Nested) --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover);
+            border-color: var(--accent-black);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .project-date {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .project-details {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .project-resp {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-primary);
+            padding-top: 0.5rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        /* --- Skills Grid --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-group {
+            background: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-group:hover {
+            transform: translateY(-5px);
+            background: #f0f0f0;
+        }
+
+        .skill-group h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-black);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--accent-black);
+        }
+
+        /* --- Contact / Footer --- */
+        .footer-cta {
+            text-align: center;
+            background: var(--accent-black);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            margin-top: 4rem;
+        }
+
+        .footer-cta p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: #ccc;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background: white;
+            color: var(--accent-black);
+            padding: 1rem 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            background: #ccc;
+            transform: scale(1.05);
+        }
+
+        /* --- Animations --- */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .header-content h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .skills-grid {
+            .hero-container {
                 grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .profile-img-wrapper {
+                margin: 0 auto;
+                width: 150px;
+                height: 150px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
             }
             
-            .container {
-                padding: 1rem;
+            .hero-contact {
+                justify-content: center;
+                flex-direction: column;
+                gap: 0.5rem;
             }
-            
-            .profile-summary, .education-item, .experience-item, .skill-category {
-                padding: 1.5rem;
+
+            .hero-text .subtitle {
+                animation: none;
+                width: auto;
+                border: none;
+                white-space: normal;
+            }
+
+            .role-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem;
             }
         }
     </style>
-  </head>
+</head>
+<body>
 
-  <body>
-    <svg class="line-svg" role="presentational" preserveAspectRatio="xMidYMin slice" width="100%" fill="none" viewBox="-480 0 2300 2241">
-      <path class="anim-overview-stroke" stroke="#C7DBF4" stroke-width="160" d="M-841 100H584c124 0 225 101 225 225v0c0 124-101 225-225 225h-95a281 281 0 00-281 281v0c0 155 125 281 281 281h442c167 0 304 136 304 304v0c0 168-137 304-304 304H795a439 439 0 00-439 439v82" opacity=".45"></path>
-    </svg>
-
-    <header class="page-header">
-      <div class="header-content">
-        <h1>Wang Bing</h1>
-        <div class="subtitle">Senior Software Architect & Technical Leader</div>
-        <div class="contact-info">
-          <div>📧 bingwang@outlook.com</div>
-          <div>📍 Hangzhou, Zhejiang, China</div>
+    <header class="hero">
+        <div class="hero-container">
+            <div class="profile-img-wrapper">
+                <!-- Placeholder Image - Replace src with actual photo URL -->
+                <img src="https://ui-avatars.com/api/?name=Wang+Bing&background=333&color=fff&size=512&font-size=0.33" alt="Wang Bing">
+            </div>
+            <div class="hero-text">
+                <h1>Wang Bing</h1>
+                <div class="subtitle">Senior Software Architect & Technical Leader</div>
+                <div class="hero-contact">
+                    <div>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        bingwang@outlook.com
+                    </div>
+                    <div>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        Hangzhou, Zhejiang, China
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </header>
 
     <div class="container">
-      <section class="section">
-        <h2 class="section-title">Profile Summary</h2>
-        <div class="profile-summary">
-          <p>With over 18 years of R&D and architectural experience at industry giants like State Street Bank and Siemens Industrial Software, I possess deep expertise in both Fintech and Industrial Software domains. I specialize in business abstraction and modeling, with a mastery of FX trading, fund flows, and complex approval workflows.</p>
-          <p>My core strength lies in architecting high-availability, high-load distributed transaction systems and enterprise-grade IAM/PAM Zero Trust platforms under strict financial compliance standards. I possess profound expertise in Java internals and distributed architectures, leveraging Spring Boot/Cloud, Kafka, and comprehensive data solutions within cloud-native ecosystems.</p>
-          <p>I have consistently led the architectural design, microservices decomposition, and performance tuning of mission-critical systems, orchestrating AWS infrastructure to guarantee high availability under high-concurrency scenarios. Furthermore, I excel in technical leadership, notably by infusing Generative AI and LLM capabilities into engineering practices to accelerate the SDLC, and deploying intelligent AIOps frameworks to maximize system stability while significantly optimizing operational costs.</p>
+        
+        <!-- Profile Summary -->
+        <section class="section">
+            <h2 class="section-title">Profile Summary</h2>
+            <div class="summary-box">
+                <p>With over 18 years of R&D and architectural experience at industry giants like State Street Bank and Siemens Industrial Software, I possess deep expertise in both Fintech and Industrial Software domains. I specialize in business abstraction and modeling, with a mastery of FX trading, fund flows, and complex approval workflows.</p>
+                <p>My core strength lies in architecting high-availability, high-load distributed transaction systems and enterprise-grade IAM/PAM Zero Trust platforms under strict financial compliance standards. I possess profound expertise in Java internals and distributed architectures, leveraging Spring Boot/Cloud, Kafka, and comprehensive data solutions within cloud-native ecosystems.</p>
+                <p>I have consistently led the architectural design, microservices decomposition, and performance tuning of mission-critical systems, orchestrating AWS infrastructure to guarantee high availability under high-concurrency scenarios. Furthermore, I excel in technical leadership, notably by infusing Generative AI and LLM capabilities into engineering practices to accelerate the SDLC, and deploying intelligent AIOps frameworks to maximize system stability while significantly optimizing operational costs.</p>
 
-          <div class="certificates">
-            <h4>Certificates</h4>
-            <ul>
-              <li>Certified System Architect (CSTPQ)</li>
-              <li>CSPO / CSM (Certificate of Scrum Product Owner / Scrum Master)</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+                <div class="certificates-tag">
+                    <h4>Certificates</h4>
+                    <ul>
+                        <li>Certified System Architect (CSTPQ)</li>
+                        <li>CSPO / CSM (Certificate of Scrum Product Owner / Scrum Master)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-      <section class="section">
-        <h2 class="section-title">Education Background</h2>
-        <div class="education-item">
-          <h3>M.Sc. in Information Technology (GPA: 3.72/4.0)</h3>
-          <div class="date">Hong Kong University of Science and Technology | Aug 2010 - Jul 2011</div>
-          <div>Location: Hong Kong</div>
-        </div>
-        <div class="education-item">
-          <h3>B.S. in Software Engineering (Average: 84.5/100)</h3>
-          <div class="date">Zhejiang University of Technology | Sep 2003 - Jul 2007</div>
-          <div>Location: Hangzhou</div>
-        </div>
-      </section>
+        <!-- Experience -->
+        <section class="section">
+            <h2 class="section-title">Career History & Achievements</h2>
+            
+            <!-- State Street -->
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">State Street</div>
+                    <div class="role-meta">Dec 2014 - Present | Hangzhou</div>
+                </div>
+                <div class="company-desc">
+                    <strong>Assistant Vice President / Officer</strong><br>
+                    Led the design and development of cross-functional projects, managing a team to deliver complex tasks on time and with high quality. Contributed to enterprise systems including eFX, OMS, DevOps, ML-driven monitoring and alerting solutions, IAM/PAM solutions, and security infrastructure. Utilized agile methodologies to align technical execution with business goals.
+                </div>
 
-      <section class="section">
-        <h2 class="section-title">Key Skills</h2>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3>Technical Skills & Expertise</h3>
-            <ul class="skill-list">
-              <li>Expert proficiency in Java, Python, and Go</li>
-              <li>Cloud-Native (AWS/Azure) architectures</li>
-              <li>Docker and Kubernetes orchestration</li>
-              <li>Observability Engineering (Prometheus/Grafana)</li>
-              <li>DevOps practices (CI/CD, IaC with Terraform)</li>
-              <li>Hybrid and public cloud environments</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Technical Leadership & Team Management</h3>
-            <ul class="skill-list">
-              <li>10+ years technical and leadership experience</li>
-              <li>Cross-functional team leadership</li>
-              <li>End-to-end delivery of large-scale initiatives</li>
-              <li>Business strategy translation to technical architecture</li>
-              <li>Agile delivery integration</li>
-              <li>Engineering excellence best practices</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Data Analytics & Engineering</h3>
-            <ul class="skill-list">
-              <li>Cloud-native Data Lakehouse platform architecture</li>
-              <li>Snowflake and Databricks implementation</li>
-              <li>Apache Spark distributed computing</li>
-              <li>Data silo elimination</li>
-              <li>Business intelligence transformation</li>
-              <li>Strategic asset development</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>AI & Machine Learning</h3>
-            <ul class="skill-list">
-              <li>MLOps and LLM engineering experience</li>
-              <li>Intelligent monitoring systems development</li>
-              <li>Anomaly detection systems</li>
-              <li>Mainstream frameworks (Scikit-learn, PyTorch)</li>
-              <li>LLM application engineering (RAG, Agents)</li>
-              <li>AI coding assistants adoption</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Financial Domain Expertise</h3>
-            <ul class="skill-list">
-              <li>Quantitative trading knowledge</li>
-              <li>Risk control systems</li>
-              <li>Portfolio management</li>
-              <li>FX and OTC derivatives transaction workflows</li>
-              <li>End-to-end transaction processing</li>
-              <li>Financial compliance standards</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+                <div class="project-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">Digital Identity Management (SailPoint)</span>
+                            <span class="project-date">Apr 2021 - Present</span>
+                        </div>
+                        <div class="project-details">
+                            The Identity Management solution provides a centralized digital identity repository with a rules engine for automating business processes based on identity attributes. It supports full identity lifecycle management (join, move, leave) and associates all accounts with designated State Street roles or entitlements.
+                        </div>
+                        <div class="project-resp">
+                            Responsibilities: Provided technical leadership and guidance to a high-performing team, driving problem resolution, system architecture design, and continuous improvement of engineering practices.
+                        </div>
+                    </div>
 
-      <section class="section">
-        <h2 class="section-title">Career History and Achievements</h2>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">State Street Privileged Access Management</span>
+                            <span class="project-date">Feb 2020 - Present</span>
+                        </div>
+                        <div class="project-details">
+                            Build up universal interface for company Non-Human Account management, working with upstream and downstream applications for account enable/disable, delete and password changes, account firecalls.
+                        </div>
+                        <div class="project-resp">
+                            Responsibilities: As a Technical Leader, responsible for architecture design and leading cross-functional teams to deliver scalable and high-performance solutions.
+                        </div>
+                    </div>
 
-        <div class="experience-item">
-          <h3>State Street - Assistant Vice President / Officer</h3>
-          <div class="date">Dec 2014 - Present | Hangzhou</div>
-          <p>Led the design and development of cross-functional projects, managing a team to deliver complex tasks on time and with high quality. Contributed to enterprise systems including eFX, OMS, DevOps, ML-driven monitoring and alerting solutions, IAM/PAM solutions, and security infrastructure. Utilized agile methodologies to align technical execution with business goals.</p>
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">Enterprise Secure Framework</span>
+                            <span class="project-date">Jun 2019 - Feb 2020</span>
+                        </div>
+                        <div class="project-details">
+                            Rebuild existing ESF system with new technology such as Node.js and React, perform performance tuning on legacy codes and database scripts.
+                        </div>
+                        <div class="project-resp">
+                            Responsibilities: Joined new team as a Team Leader, guiding new team members to get familiar with the new system and technologies, and participated in project development.
+                        </div>
+                    </div>
 
-          <ul class="project-list">
-            <li class="project-item">
-              <strong>Digital Identity Management (SailPoint)</strong> | Apr 2021 - Present
-              <br>
-              The Identity Management solution provides a centralized digital identity repository with a rules engine for automating business processes based on identity attributes. It supports full identity lifecycle management (join, move, leave) and associates all accounts with designated State Street roles or entitlements.
-              <br>
-              <strong>Responsibilities:</strong> Provided technical leadership and guidance to a high-performing team, driving problem resolution, system architecture design, and continuous improvement of engineering practices.
-            </li>
-            <li class="project-item">
-              <strong>State Street Privileged Access Management</strong> | Feb 2020 - Present
-              <br>
-              Build up universal interface for company Non-Human Account management, working with upstream and downstream applications for account enable/disable, delete and password changes, account firecalls.
-              <br>
-              <strong>Responsibilities:</strong> As a Technical Leader, responsible for architecture design and leading cross-functional teams to deliver scalable and high-performance solutions.
-            </li>
-            <li class="project-item">
-              <strong>Enterprise Secure Framework</strong> | Jun 2019 - Feb 2020
-              <br>
-              Rebuild existing ESF system with new technology such as Node.js and React, perform performance tuning on legacy codes and database scripts.
-              <br>
-              <strong>Responsibilities:</strong> Joined new team as a Team Leader, guiding new team members to get familiar with the new system and technologies, and participated in project development.
-            </li>
-            <li class="project-item">
-              <strong>Global Operational Visibility</strong> | Sep 2017 - May 2019
-              <br>
-              Collecting system log, runtime, and matrix data across platform, for analysis and monitoring, feeding purified data to Elastic Stack through Kafka as mid-tubing for further analysis.
-              <br>
-              <strong>Responsibilities:</strong> Worked as a Technical Leader, designed system architecture and resolved unexpected issues. Served as a mentor to guide new team members.
-            </li>
-            <li class="project-item">
-              <strong>DevOps SCM CI/CD</strong> | Apr 2017 - Sep 2017
-              <br>
-              The company's initial DevOps initiative included the setup of key tools such as Git, Jenkins, Artifactory, and RTC, with the long-term objective of integrating these independent platforms into a cohesive, end-to-end CI/CD pipeline.
-              <br>
-              <strong>Responsibilities:</strong> Responsible for setting up the Artifactory platform and performing customization and enhancement on Jenkins. Participated in integration development between platforms.
-            </li>
-            <li class="project-item">
-              <strong>Reference Data Management</strong> | Jul 2016 - Apr 2017
-              <br>
-              As the original configuration management system for FX trading, RDM provided an intuitive, WYSIWYG GUI that enabled end users to manage static data in real time during FX trading system operation.
-              <br>
-              <strong>Responsibilities:</strong> Led a team to consistently deliver high-quality software solutions and participated in high-level design discussions for key projects.
-            </li>
-            <li class="project-item">
-              <strong>FX Risk Routing</strong> | Sep 2015 - Nov 2016
-              <br>
-              Enhanced FX position routing and management efficiency by replacing legacy OMS with a vendor system and migrating critical data into the new platform.
-              <br>
-              <strong>Responsibilities:</strong> Acted as technical lead, guiding the team to deliver high-quality, performant systems that aligned with end-user requirements.
-            </li>
-            <li class="project-item">
-              <strong>FX GMBH - Trading</strong> | Dec 2014 - Nov 2015
-              <br>
-              Re-architected the existing FX Trading business on GTH, leveraging the extensibility of the FpML protocol. The solution featured a modular design and configurable workflows to support flexible trading operations.
-              <br>
-              <strong>Responsibilities:</strong> Contributed to the design and implementation of key system components, and played a role in setting up an automated integration testing framework to improve code quality and deployment efficiency.
-            </li>
-          </ul>
-        </div>
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">Global Operational Visibility</span>
+                            <span class="project-date">Sep 2017 - May 2019</span>
+                        </div>
+                        <div class="project-details">
+                            Collecting system log, runtime, and matrix data across platform, for analysis and monitoring, feeding purified data to Elastic Stack through Kafka as mid-tubing for further analysis.
+                        </div>
+                        <div class="project-resp">
+                            Responsibilities: Worked as a Technical Leader, designed system architecture and resolved unexpected issues. Served as a mentor to guide new team members.
+                        </div>
+                    </div>
 
-        <div class="experience-item">
-          <h3>Siemens PLM Software - Senior Software Engineer</h3>
-          <div class="date">Sep 2011 - Dec 2014 | Shanghai</div>
-          <p>Delivered Siemens Team Center 9.x/10.x/11.x and its related products with Java and C++. Performed requirement analysis, design, issue fixing and performance tuning.</p>
-        </div>
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">DevOps SCM CI/CD</span>
+                            <span class="project-date">Apr 2017 - Sep 2017</span>
+                        </div>
+                        <div class="project-details">
+                            The company's initial DevOps initiative included the setup of key tools such as Git, Jenkins, Artifactory, and RTC, with the long-term objective of integrating these independent platforms into a cohesive, end-to-end CI/CD pipeline.
+                        </div>
+                        <div class="project-resp">
+                            Responsibilities: Responsible for setting up the Artifactory platform and performing customization and enhancement on Jenkins. Participated in integration development between platforms.
+                        </div>
+                    </div>
 
-        <div class="experience-item">
-          <h3>Insigma Technology Co., Ltd - Senior Software Engineer</h3>
-          <div class="date">Sep 2010 - Aug 2011 | Hangzhou</div>
-          <p>Worked as a contract team member in client's (Cisco Webex) company. Took responsibility for daily development tasks for its main product as Cisco - Webex.</p>
-        </div>
+                    <!-- Project 6 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">Reference Data Management</span>
+                            <span class="project-date">Jul 2016 - Apr 2017</span>
+                        </div>
+                        <div class="project-details">
+                            As the original configuration management system for FX trading, RDM provided an intuitive, WYSIWYG GUI that enabled end users to manage static data in real time during FX trading system operation.
+                        </div>
+                        <div class="project-resp">
+                            Responsibilities: Led a team to consistently deliver high-quality software solutions and participated in high-level design discussions for key projects.
+                        </div>
+                    </div>
 
-        <div class="experience-item">
-          <h3>Cognizant Technology Solutions (Shanghai) - Software Engineer</h3>
-          <div class="date">Apr 2007 - Jul 2009 | Shanghai</div>
-          <p>Worked on projects for clients such as Thomson-Reuters, Sears and so on.</p>
-        </div>
-      </section>
+                    <!-- Project 7 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">FX Risk Routing</span>
+                            <span class="project-date">Sep 2015 - Nov 2016</span>
+                        </div>
+                        <div class="project-details">
+                            Enhanced FX position routing and management efficiency by replacing legacy OMS with a vendor system and migrating critical data into the new platform.
+                        </div>
+                        <div class="project-resp">
+                            Responsibilities: Acted as technical lead, guiding the team to deliver high-quality, performant systems that aligned with end-user requirements.
+                        </div>
+                    </div>
 
-      <section class="section">
-        <h2 class="section-title">Contact</h2>
-        <p>I'm always interested in hearing about new opportunities and challenges in the technology space. Feel free to reach out if you'd like to discuss potential collaborations or learn more about my experience.</p>
-        <a href="mailto:bingwang@outlook.com" class="btn">Get In Touch</a>
-      </section>
+                     <!-- Project 8 -->
+                     <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">FX GMBH - Trading</span>
+                            <span class="project-date">Dec 2014 - Nov 2015</span>
+                        </div>
+                        <div class="project-details">
+                            Re-architected the existing FX Trading business on GTH, leveraging the extensibility of the FpML protocol. The solution featured a modular design and configurable workflows to support flexible trading operations.
+                        </div>
+                        <div class="project-resp">
+                            Responsibilities: Contributed to the design and implementation of key system components, and played a role in setting up an automated integration testing framework to improve code quality and deployment efficiency.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Siemens -->
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">Siemens PLM Software</div>
+                    <div class="role-meta">Sep 2011 - Dec 2014 | Shanghai</div>
+                </div>
+                <div class="company-desc">
+                    <strong>Senior Software Engineer</strong><br>
+                    Delivered Siemens Team Center 9.x/10.x/11.x and its related products with Java and C++. Performed requirement analysis, design, issue fixing and performance tuning.
+                </div>
+            </div>
+
+            <!-- Insigma -->
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">Insigma Technology Co., Ltd</div>
+                    <div class="role-meta">Sep 2010 - Aug 2011 | Hangzhou</div>
+                </div>
+                <div class="company-desc">
+                    <strong>Senior Software Engineer</strong><br>
+                    Worked as a contract team member in client's (Cisco Webex) company. Took responsibility for daily development tasks for its main product as Cisco - Webex.
+                </div>
+            </div>
+
+            <!-- Cognizant -->
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">Cognizant Technology Solutions</div>
+                    <div class="role-meta">Apr 2007 - Jul 2009 | Shanghai</div>
+                </div>
+                <div class="company-desc">
+                    <strong>Software Engineer</strong><br>
+                    Worked on projects for clients such as Thomson-Reuters, Sears and so on.
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title">Education Background</h2>
+            
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">M.Sc. in Information Technology</div>
+                    <div class="role-meta">Aug 2010 - Jul 2011 | Hong Kong</div>
+                </div>
+                <div class="company-desc">
+                    Hong Kong University of Science and Technology (GPA: 3.72/4.0)
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">B.S. in Software Engineering</div>
+                    <div class="role-meta">Sep 2003 - Jul 2007 | Hangzhou</div>
+                </div>
+                <div class="company-desc">
+                    Zhejiang University of Technology (Average: 84.5/100)
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section">
+            <h2 class="section-title">Key Skills</h2>
+            <div class="skills-container">
+                <div class="skill-group">
+                    <h3>Technical Skills & Expertise</h3>
+                    <ul class="skill-list">
+                        <li>Expert proficiency in Java, Python, and Go</li>
+                        <li>Cloud-Native (AWS/Azure) architectures</li>
+                        <li>Docker and Kubernetes orchestration</li>
+                        <li>Observability Engineering (Prometheus/Grafana)</li>
+                        <li>DevOps practices (CI/CD, IaC with Terraform)</li>
+                        <li>Hybrid and public cloud environments</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Technical Leadership</h3>
+                    <ul class="skill-list">
+                        <li>10+ years technical and leadership experience</li>
+                        <li>Cross-functional team leadership</li>
+                        <li>End-to-end delivery of large-scale initiatives</li>
+                        <li>Business strategy translation to technical architecture</li>
+                        <li>Agile delivery integration</li>
+                        <li>Engineering excellence best practices</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Data Analytics & Engineering</h3>
+                    <ul class="skill-list">
+                        <li>Cloud-native Data Lakehouse platform architecture</li>
+                        <li>Snowflake and Databricks implementation</li>
+                        <li>Apache Spark distributed computing</li>
+                        <li>Data silo elimination</li>
+                        <li>Business intelligence transformation</li>
+                        <li>Strategic asset development</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>AI & Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li>MLOps and LLM engineering experience</li>
+                        <li>Intelligent monitoring systems development</li>
+                        <li>Anomaly detection systems</li>
+                        <li>Mainstream frameworks (Scikit-learn, PyTorch)</li>
+                        <li>LLM application engineering (RAG, Agents)</li>
+                        <li>AI coding assistants adoption</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Financial Domain Expertise</h3>
+                    <ul class="skill-list">
+                        <li>Quantitative trading knowledge</li>
+                        <li>Risk control systems</li>
+                        <li>Portfolio management</li>
+                        <li>FX and OTC derivatives transaction workflows</li>
+                        <li>End-to-end transaction processing</li>
+                        <li>Financial compliance standards</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <section class="footer-cta visible">
+            <h2>Let's Connect</h2>
+            <p>I'm always interested in hearing about new opportunities and challenges in the technology space. Feel free to reach out if you'd like to discuss potential collaborations or learn more about my experience.</p>
+            <a href="mailto:bingwang@outlook.com" class="btn-contact">Get In Touch</a>
+        </section>
+
     </div>
 
     <script>
-        // Add smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add intersection observer for animations
+        // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -538,16 +784,14 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.section').forEach(section => {
+        document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
     </script>
-  </body>
-
+</body>
 </html>
