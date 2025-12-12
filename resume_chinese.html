@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王兵 - 简历</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com ">
+    <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300 ;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --bg-color: #ffffff;
+    --surface-color: #f8f8f8;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --border-color: #e0e0e0;
+    --accent-black: #000000;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* --- Language Toggle --- */
+.lang-switch {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    background: rgba(255,255,255,0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.lang-switch a {
+    color: var(--accent-black);
+    font-weight: 600;
+}
+
+.lang-switch a:hover {
+    text-decoration: underline;
+}
+
+/* --- Hero Section --- */
+.hero {
+    background-color: var(--accent-black);
+    color: white;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+}
+
+/* Abstract background pattern */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+}
+
+.hero-container {
+    max-width: 1000px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+    z-index: 1;
+}
+
+.profile-img-wrapper {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.2);
+    overflow: hidden;
+    position: relative;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.profile-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.profile-img-wrapper:hover img {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+.hero-text .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    border-right: 2px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    width: 0;
+    animation-fill-mode: forwards;
+}
+
+.hero-contact {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.95rem;
+    color: #999;
+}
+
+.hero-contact div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* --- Main Layout --- */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+section {
+    margin-bottom: 5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-black);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    padding-right: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background-color: rgba(0,0,0,0.05);
+    z-index: -1;
+}
+
+/* --- Summary --- */
+.summary-box {
+    background-color: var(--surface-color);
+    padding: 2.5rem;
+    border-left: 4px solid var(--accent-black);
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+.summary-box p {
+    margin-bottom: 1.2rem;
+}
+
+.summary-box p:last-child {
+    margin-bottom: 0;
+}
+
+.certificates-tag {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.certificates-tag h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    color: var(--accent-black);
+}
+
+.certificates-tag ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.certificates-tag li {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background: #f0f0f0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+/* --- Timeline (Experience & Education) --- */
+.timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 3rem;
+    border-left: 2px solid var(--border-color);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    background: var(--bg-color);
+    border: 3px solid var(--accent-black);
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.timeline-item:hover::before {
+    background: var(--accent-black);
+}
+
+.role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.role-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.role-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #777;
+    background: #f0f0f0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.company-desc {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* --- Project Cards (Nested) --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.project-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover);
+    border-color: var(--accent-black);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+.project-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.project-date {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.project-details {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.project-resp {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-primary);
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+/* --- Skills Grid --- */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.skill-group {
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.skill-group:hover {
+    transform: translateY(-5px);
+    background: #f0f0f0;
+}
+
+.skill-group h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-black);
+}
+
+.skill-list {
+    list-style: none;
+}
+
+.skill-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.2rem;
+    font-size: 0.95rem;
+}
+
+.skill-list li::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    color: var(--accent-black);
+}
+
+/* --- Contact / Footer --- */
+.footer-cta {
+    text-align: center;
+    background: var(--accent-black);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 12px;
+    margin-top: 4rem;
+}
+
+.footer-cta p {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    color: #ccc;
+}
+
+.btn-contact {
+    display: inline-block;
+    background: white;
+    color: var(--accent-black);
+    padding: 1rem 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-contact:hover {
+    background: #ccc;
+    transform: scale(1.05);
+}
+
+/* --- Animations --- */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .lang-switch {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .profile-img-wrapper {
+        margin: 0 auto;
+        width: 150px;
+        height: 150px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-contact {
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .hero-text .subtitle {
+        animation: none;
+        width: auto;
+        border: none;
+        white-space: normal;
+    }
+
+    .role-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .timeline-item {
+        padding-left: 1.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- 语言切换链接 -->
+    <div class="lang-switch">
+        <a href="index.html">English</a>
+    </div>
+
+    <header class="hero">
+        <div class="hero-container">
+            <div class="profile-img-wrapper">
+                <!-- 占位图片 - 将src替换为实际照片URL -->
+                <img src="https://ui-avatars.com/api/?name=Wang+Bing&background=333&color=fff&size=512&font-size=0.33 " alt="王兵">
+            </div>
+            <div class="hero-text">
+                <h1>王兵</h1>
+                <div class="subtitle">高级软件架构师与技术领导者</div>
+                <div class="hero-contact">
+                    <div>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        bingwang@outlook.com
+                    </div>
+                    <div>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        中国浙江杭州
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- 个人简介 -->
+        <section class="section">
+            <h2 class="section-title">个人简介</h2>
+            <div class="summary-box">
+                <p>拥有超过18年在道富银行和西门子工业软件等行业巨头从事研发与架构工作的经验，我在金融科技和工业软件领域均具备深厚专业知识。我专注于业务抽象与建模，精通外汇交易、资金流转和复杂审批流程。</p>
+                <p>我的核心优势在于在严格金融合规标准下，设计高可用、高负载的分布式事务系统以及企业级IAM/PAM零信任平台。我精通Java内部机制和分布式架构，能够在云原生生态系统中充分利用Spring Boot/Cloud、Kafka和全面数据解决方案。</p>
+                <p>我始终主导关键系统的架构设计、微服务拆分与性能调优，编排AWS基础设施，确保在高并发场景下的高可用性。此外，我擅长技术领导，尤其善于将生成式AI和LLM能力融入工程实践以加速软件开发生命周期，并部署智能AIOps框架，最大化系统稳定性，同时显著优化运营成本。</p>
+
+                <div class="certificates-tag">
+                    <h4>证书</h4>
+                    <ul>
+                        <li>认证系统架构师 (CSTPQ)</li>
+                        <li>CSPO / CSM (认证Scrum产品负责人 / Scrum Master)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工作经历 -->
+        <section class="section">
+            <h2 class="section-title">职业经历与成就</h2>
+            
+            <!-- 道富银行 -->
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">道富银行</div>
+                    <div class="role-meta">2014年12月 - 至今 | 杭州</div>
+                </div>
+                <div class="company-desc">
+                    <strong>助理副总裁 / 主管</strong><br>
+                    领导跨职能项目的设计与开发，管理团队按时高质量交付复杂任务。参与企业系统建设，包括电子外汇、订单管理系统、DevOps、基于机器学习的监控与告警解决方案、IAM/PAM解决方案以及安全基础设施。采用敏捷方法使技术执行与业务目标保持一致。
+                </div>
+
+                <div class="project-grid">
+                    <!-- 项目1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">数字身份管理 (SailPoint)</span>
+                            <span class="project-date">2021年4月 - 至今</span>
+                        </div>
+                        <div class="project-details">
+                            该身份管理解决方案提供集中式数字身份仓库，并配备规则引擎，可根据身份属性自动化业务流程。支持完整的身份生命周期管理（入职、转岗、离职），并将所有账户与指定的道富角色或权限关联。
+                        </div>
+                        <div class="project-resp">
+                            职责：为高效团队提供技术领导与指导，推动问题解决、系统架构设计以及工程实践的持续改进。
+                        </div>
+                    </div>
+
+                    <!-- 项目2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">道富特权访问管理</span>
+                            <span class="project-date">2020年2月 - 至今</span>
+                        </div>
+                        <div class="project-details">
+                            构建公司非人类账户管理的通用接口，与上游和下游应用协作，实现账户启用/禁用、删除和密码更改、账户紧急调用。
+                        </div>
+                        <div class="project-resp">
+                            职责：作为技术领导者，负责架构设计并领导跨职能团队交付可扩展、高性能的解决方案。
+                        </div>
+                    </div>
+
+                    <!-- 项目3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">企业安全框架</span>
+                            <span class="project-date">2019年6月 - 2020年2月</span>
+                        </div>
+                        <div class="project-details">
+                            使用Node.js和React等新技术重建现有ESF系统，对遗留代码和数据库脚本进行性能调优。
+                        </div>
+                        <div class="project-resp">
+                            职责：作为团队负责人加入新团队，指导新成员熟悉新系统和技术，并参与项目开发。
+                        </div>
+                    </div>
+
+                    <!-- 项目4 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">全球运营可视化</span>
+                            <span class="project-date">2017年9月 - 2019年5月</span>
+                        </div>
+                        <div class="project-details">
+                            收集跨平台的系统日志、运行时和指标数据，用于分析和监控，通过Kafka作为中间管道将净化后的数据馈送至Elastic Stack进行进一步分析。
+                        </div>
+                        <div class="project-resp">
+                            职责：担任技术负责人，设计系统架构并解决突发问题。担任导师指导新团队成员。
+                        </div>
+                    </div>
+
+                    <!-- 项目5 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">DevOps SCM CI/CD</span>
+                            <span class="project-date">2017年4月 - 2017年9月</span>
+                        </div>
+                        <div class="project-details">
+                            公司最初的DevOps计划包括搭建Git、Jenkins、Artifactory和RTC等关键工具，长期目标是将这些独立平台整合为一个端到端的CI/CD流水线。
+                        </div>
+                        <div class="project-resp">
+                            职责：负责搭建Artifactory平台，并对Jenkins进行定制和增强。参与平台间的集成开发。
+                        </div>
+                    </div>
+
+                    <!-- 项目6 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">参考数据管理</span>
+                            <span class="project-date">2016年7月 - 2017年4月</span>
+                        </div>
+                        <div class="project-details">
+                            作为外汇交易的原始配置管理系统，RDM提供直观的所见即所得GUI，使最终用户能够在外汇交易系统运行期间实时管理静态数据。
+                        </div>
+                        <div class="project-resp">
+                            职责：带领团队持续交付高质量软件解决方案，并参与关键项目的高层设计讨论。
+                        </div>
+                    </div>
+
+                    <!-- 项目7 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">外汇风险路由</span>
+                            <span class="project-date">2015年9月 - 2016年11月</span>
+                        </div>
+                        <div class="project-details">
+                            通过替换传统订单管理系统为供应商系统，并将关键数据迁移到新平台，提高外汇头寸路由和管理效率。
+                        </div>
+                        <div class="project-resp">
+                            职责：担任技术负责人，指导团队交付高质量、高性能的系统，以满足最终用户需求。
+                        </div>
+                    </div>
+
+                     <!-- 项目8 -->
+                     <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">外汇GMBH - 交易</span>
+                            <span class="project-date">2014年12月 - 2015年11月</span>
+                        </div>
+                        <div class="project-details">
+                            利用FpML协议的可扩展性，在GTH上重新架构现有的外汇交易业务。该解决方案采用模块化设计和可配置工作流，以支持灵活的交易操作。
+                        </div>
+                        <div class="project-resp">
+                            职责：为关键系统组件的设计和实现做出贡献，并在建立自动化集成测试框架以提高代码质量和部署效率方面发挥作用。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 西门子 -->
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">西门子PLM软件</div>
+                    <div class="role-meta">2011年9月 - 2014年12月 | 上海</div>
+                </div>
+                <div class="company-desc">
+                    <strong>高级软件工程师</strong><br>
+                    使用Java和C++交付西门子Team Center 9.x/10.x/11.x及其相关产品。执行需求分析、设计、问题修复和性能调优。
+                </div>
+            </div>
+
+            <!-- 信雅达 -->
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">信雅达科技有限公司</div>
+                    <div class="role-meta">2010年9月 - 2011年8月 | 杭州</div>
+                </div>
+                <div class="company-desc">
+                    <strong>高级软件工程师</strong><br>
+                    作为合同团队成员在客户（思科Webex）公司工作。负责其主营产品思科-Webex的日常开发任务。
+                </div>
+            </div>
+
+            <!-- 高知特 -->
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">高知特科技解决方案</div>
+                    <div class="role-meta">2007年4月 - 2009年7月 | 上海</div>
+                </div>
+                <div class="company-desc">
+                    <strong>软件工程师</strong><br>
+                    为汤森路透、西尔斯等客户开展项目工作。
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育背景 -->
+        <section class="section">
+            <h2 class="section-title">教育背景</h2>
+            
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">信息技术理学硕士</div>
+                    <div class="role-meta">2010年8月 - 2011年7月 | 香港</div>
+                </div>
+                <div class="company-desc">
+                    香港科技大学（GPA：3.72/4.0）
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="role-header">
+                    <div class="role-title">软件工程理学学士</div>
+                    <div class="role-meta">2003年9月 - 2007年7月 | 杭州</div>
+                </div>
+                <div class="company-desc">
+                    浙江工业大学（平均分：84.5/100）
+                </div>
+            </div>
+        </section>
+
+        <!-- 技能 -->
+        <section class="section">
+            <h2 class="section-title">核心技能</h2>
+            <div class="skills-container">
+                <div class="skill-group">
+                    <h3>技术技能与专长</h3>
+                    <ul class="skill-list">
+                        <li>精通Java、Python和Go</li>
+                        <li>云原生（AWS/Azure）架构</li>
+                        <li>Docker和Kubernetes编排</li>
+                        <li>可观测性工程（Prometheus/Grafana）</li>
+                        <li>DevOps实践（CI/CD、IaC与Terraform）</li>
+                        <li>混合与公有云环境</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>技术领导力</h3>
+                    <ul class="skill-list">
+                        <li>10年以上技术与领导经验</li>
+                        <li>跨职能团队领导</li>
+                        <li>大规模计划端到端交付</li>
+                        <li>业务战略转化为技术架构</li>
+                        <li>敏捷交付集成</li>
+                        <li>工程卓越最佳实践</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>数据分析与工程</h3>
+                    <ul class="skill-list">
+                        <li>云原生数据湖仓平台架构</li>
+                        <li>Snowflake和Databricks实现</li>
+                        <li>Apache Spark分布式计算</li>
+                        <li>数据孤岛消除</li>
+                        <li>商业智能转型</li>
+                        <li>战略资产开发</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>AI与机器学习</h3>
+                    <ul class="skill-list">
+                        <li>MLOps和LLM工程经验</li>
+                        <li>智能监控系统开发</li>
+                        <li>异常检测系统</li>
+                        <li>主流框架（Scikit-learn、PyTorch）</li>
+                        <li>LLM应用工程（RAG、智能体）</li>
+                        <li>AI编码助手采用</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>金融领域专长</h3>
+                    <ul class="skill-list">
+                        <li>量化交易知识</li>
+                        <li>风险控制系统</li>
+                        <li>投资组合管理</li>
+                        <li>外汇和场外衍生品交易工作流</li>
+                        <li>端到端交易处理</li>
+                        <li>金融合规标准</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <section class="footer-cta visible">
+            <h2>保持联系</h2>
+            <p>我一直对技术领域的新机遇和挑战感兴趣。如果您想讨论潜在合作或了解更多我的经历，请随时联系。</p>
+            <a href="mailto:bingwang@outlook.com" class="btn-contact">取得联系</a>
+        </section>
+
+    </div>
+
+    <script>
+        // 淡入动画的Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
